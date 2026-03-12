@@ -1,0 +1,12 @@
+{
+  "name": "webtoapk-backend",
+  "version": "1.0.0",
+  "description": "WebToAPK - Convertisseur de sites web en APK Android",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
