@@ -197,8 +197,8 @@ function buildApk(buildDir, params, iconData) {
   }
 
   // ── Build steps (requires Android SDK tools on server) ──
-  const ANDROID_JAR = process.env.ANDROID_JAR || "/usr/local/lib/android/sdk/platforms/android-34/android.jar";
-  const BUILD_TOOLS = process.env.BUILD_TOOLS || "/usr/local/lib/android/sdk/build-tools/34.0.0";
+  const ANDROID_JAR = process.env.ANDROID_JAR || "/opt/local/lib/android-sdk/platforms/android-34/android.jar";
+  const BUILD_TOOLS = process.env.BUILD_TOOLS || "/opt/local/lib/android-sdk/build-tools/34.0.0";
 
   const aapt2 = path.join(BUILD_TOOLS, "aapt2");
   const d8 = path.join(BUILD_TOOLS, "d8");
