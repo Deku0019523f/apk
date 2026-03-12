@@ -5,9 +5,9 @@ ENV ANDROID_HOME=/opt/android-sdk
 ENV PATH="${ANDROID_HOME}/build-tools/34.0.0:${ANDROID_HOME}/platform-tools:${PATH}"
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
-    curl unzip openjdk-17-jdk-headless nodejs npm \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y curl unzip openjdk-17-jdk-headless && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && rm -rf /var/lib/apt/lists/*
 
 # Install Android SDK command-line tools
 RUN mkdir -p ${ANDROID_HOME}/cmdline-tools && \
