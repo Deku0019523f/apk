@@ -74,7 +74,6 @@ function generateWebViewApk(params, buildDir) {
   const { url, appName, themeColor, orientation, fullscreen } = params;
   const packageName = `com.webtoapk.${appName.toLowerCase().replace(/[^a-z0-9]/g, "")}`;
 
-  // AndroidManifest.xml
   const orientationAttr =
     orientation === "portrait" ? 'android:screenOrientation="portrait"'
     : orientation === "landscape" ? 'android:screenOrientation="landscape"'
@@ -102,7 +101,6 @@ function generateWebViewApk(params, buildDir) {
     </application>
 </manifest>`;
 
-  // MainActivity.java
   const fullscreenImports = fullscreen === "true" ? `
 import android.view.WindowManager;
 import android.view.View;` : "";
@@ -150,7 +148,6 @@ public class MainActivity extends Activity {
     }
 }`;
 
-  // styles.xml
   const styles = `<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar">
@@ -160,7 +157,6 @@ public class MainActivity extends Activity {
     </style>
 </resources>`;
 
-  // Create project structure
   const srcDir = path.join(buildDir, "app", "src", "main");
   const javaDir = path.join(srcDir, "java", ...packageName.split("."));
   const resValues = path.join(srcDir, "res", "values");
@@ -183,7 +179,6 @@ function buildApk(buildDir, params, iconData) {
   const structure = generateWebViewApk(params, buildDir);
   const outputApk = path.join(buildDir, `${params.appName || "app"}.apk`);
 
-  // If icon provided, save it
   if (iconData) {
     const sizes = ["mdpi", "hdpi", "xhdpi", "xxhdpi", "xxxhdpi"];
     for (const size of sizes) {
@@ -192,13 +187,11 @@ function buildApk(buildDir, params, iconData) {
       fs.writeFileSync(path.join(dir, "ic_launcher.png"), iconData);
     }
   } else {
-    // Default icon placeholder
     fs.writeFileSync(path.join(structure.resMipmap, "ic_launcher.png"), Buffer.alloc(0));
   }
 
-  // ── Build steps (requires Android SDK tools on server) ──
-  const ANDROID_JAR = process.env.ANDROID_JAR || "/usr/local/lib/android/sdk/platforms/android-34/android.jar";
-  const BUILD_TOOLS = process.env.BUILD_TOOLS || "/usr/local/lib/android/sdk/build-tools/34.0.0";
+  const ANDROID_JAR = process.env.ANDROID_JAR || "/opt/android-sdk/platforms/android-34/android.jar";
+  const BUILD_TOOLS = process.env.BUILD_TOOLS || "/opt/android-sdk/build-tools/34.0.0";
 
   const aapt2 = path.join(BUILD_TOOLS, "aapt2");
   const d8 = path.join(BUILD_TOOLS, "d8");
@@ -320,7 +313,6 @@ const server = http.createServer((req, res) => {
 
         const iconData = fields.icon?.data || null;
 
-        // Build async
         try {
           const apkPath = buildApk(buildDir, { url, method, appName, themeColor, orientation, fullscreen }, iconData);
           console.log(`[done] ${buildId}`);
