@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Royal PCS Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #ffffff;
+            color: #1a3a52;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-dot {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        }
+
+        .header-text {
+            font-weight: bold;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #c4a747;
+            font-family: 'Lora', serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 3rem 1rem;
+            text-align: center;
+            background-color: #f0f3f7;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            color: #1a3a52;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+        }
+
+        .hero p {
+            font-size: 0.875rem;
+            color: #5a7a91;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 768px) {
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .divider-line {
+            height: 1px;
+            width: 6rem;
+            background-color: rgba(196, 167, 71, 0.5);
+        }
+
+        .divider-dot {
+            width: 0.375rem;
+            height: 0.375rem;
+            border-radius: 50%;
+            background-color: #c4a747;
+        }
+
+        /* Channels Section */
+        .channels-section {
+            padding: 3rem 1rem;
+            background-color: #f0f3f7;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            color: #1a3a52;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        .section-subtitle {
+            color: #5a7a91;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .channels-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .channels-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .channel-card {
+            background-color: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            animation: slideUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .channel-card:nth-child(1) {
+            animation-delay: 0ms;
+        }
+
+        .channel-card:nth-child(2) {
+            animation-delay: 120ms;
+        }
+
+        .channel-card:nth-child(3) {
+            animation-delay: 240ms;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .channel-header {
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+        }
+
+        .channel-header.whatsapp {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+        }
+
+        .channel-header.telegram {
+            background: linear-gradient(135deg, #0ea5e9, #0369a1);
+        }
+
+        .channel-header.montante {
+            background: linear-gradient(135deg, #059669, #047857);
+        }
+
+        .channel-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            margin: 0.75rem auto;
+            padding: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .channel-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            margin: 0.5rem 0;
+        }
+
+        .channel-badge.whatsapp {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .channel-badge.telegram {
+            background-color: #e0f2fe;
+            color: #0c4a6e;
+        }
+
+        .channel-badge.montante {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .channel-name {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .channel-body {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .channel-description {
+            font-size: 0.875rem;
+            color: #5a7a91;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .btn-join {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: bold;
+            background-color: #c4a747;
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-join:hover {
+            background-color: #b39638;
+        }
+
+        /* Steps Section */
+        .steps-section {
+            padding: 3.5rem 1rem;
+            background-color: white;
+        }
+
+        .steps-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .steps-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .steps-divider-line {
+            height: 1px;
+            flex: 1;
+            max-width: 5rem;
+            background-color: #c4a747;
+        }
+
+        .steps-divider-dot {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        }
+
+        .steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 1.25rem;
+            background-color: #f9fafb;
+            padding: 1.25rem;
+            border-radius: 1rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            animation: slideLeft 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .step-item:nth-child(1) {
+            animation-delay: 200ms;
+        }
+
+        .step-item:nth-child(2) {
+            animation-delay: 300ms;
+        }
+
+        .step-item:nth-child(3) {
+            animation-delay: 400ms;
+        }
+
+        .step-item:nth-child(4) {
+            animation-delay: 500ms;
+        }
+
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .step-number {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: #1a3a52;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+
+        .step-content h4 {
+            font-weight: bold;
+            color: #1a3a52;
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .step-content h4 {
+                font-size: 1.125rem;
+            }
+        }
+
+        .step-content p {
+            font-size: 0.875rem;
+            color: #5a7a91;
+            line-height: 1.6;
+        }
+
+        .cta-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, #1a3a52, #1f4461);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-box-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            margin: 0 auto 0.75rem;
+        }
+
+        .cta-box p {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            font-family: 'Lora', serif;
+        }
+
+        @media (min-width: 768px) {
+            .cta-box p {
+                font-size: 1.125rem;
+            }
+        }
+
+        .cta-box-subtitle {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Footer */
+        footer {
+            padding: 1.5rem 1rem;
+            text-align: center;
+            background-color: #1a3a52;
+            color: white;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-text {
+            font-weight: bold;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #c4a747;
+            font-family: 'Lora', serif;
+        }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: #8a9aaa;
+        }
+
+        svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo-dot"></div>
+            <span class="header-text">Royal PCS</span>
+            <div class="logo-dot"></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Rejoignez nos canaux Royal PCS !</h1>
+            <p>Cliquez sur les différents liens pour rejoindre les différents canaux de Royal PCS.</p>
+            <p>Pour bénéficier de nos avantages, suivez ces quelques étapes simples :</p>
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-dot"></div>
+                <div class="divider-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Channels Section -->
+    <section class="channels-section">
+        <div class="container">
+            <h3 class="section-title">Étape 1 — Choisissez votre canal</h3>
+            <p class="section-subtitle">Sélectionnez parmi nos trois canaux officiels</p>
+
+            <div class="channels-grid">
+                <!-- WhatsApp Channel -->
+                <div class="channel-card">
+                    <div class="channel-header whatsapp">
+                        <div class="channel-icon">
+                            <svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.783 1.14L1.07 3.591l1.378 4.067a9.84 9.84 0 00-1.175 4.993c0 5.487 4.476 9.963 9.963 9.963s9.963-4.476 9.963-9.963c0-5.487-4.476-9.963-9.963-9.963"/>
+                            </svg>
+                        </div>
+                        <span class="channel-badge whatsapp">Officiel</span>
+                        <h4 class="channel-name">Chaîne WhatsApp</h4>
+                    </div>
+                    <div class="channel-body">
+                        <p class="channel-description">Rejoignez notre chaîne officielle WhatsApp pour les actualités et mises à jour exclusives de Royal PCS.</p>
+                        <a href="https://chat.whatsapp.com/YOUR_WHATSAPP_LINK" target="_blank" rel="noopener noreferrer" class="btn-join">
+                            Rejoindre maintenant
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1rem; height: 1rem;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Telegram Channel -->
+                <div class="channel-card">
+                    <div class="channel-header telegram">
+                        <div class="channel-icon">
+                            <svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.328-.373-.115l-6.869 4.332-2.97-.924c-.644-.203-.658-.644.136-.954l11.566-4.461c.54-.203 1.01.122.84.951z"/>
+                            </svg>
+                        </div>
+                        <span class="channel-badge telegram">Notifications</span>
+                        <h4 class="channel-name">Canal Telegram</h4>
+                    </div>
+                    <div class="channel-body">
+                        <p class="channel-description">Suivez notre canal Telegram pour recevoir toutes les informations importantes en temps réel.</p>
+                        <a href="https://t.me/YOUR_TELEGRAM_LINK" target="_blank" rel="noopener noreferrer" class="btn-join">
+                            Rejoindre maintenant
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1rem; height: 1rem;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Montante -->
+                <div class="channel-card">
+                    <div class="channel-header montante">
+                        <div class="channel-icon">
+                            <svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.783 1.14L1.07 3.591l1.378 4.067a9.84 9.84 0 00-1.175 4.993c0 5.487 4.476 9.963 9.963 9.963s9.963-4.476 9.963-9.963c0-5.487-4.476-9.963-9.963-9.963"/>
+                            </svg>
+                        </div>
+                        <span class="channel-badge montante">Montante</span>
+                        <h4 class="channel-name">Groupe WhatsApp Montante</h4>
+                    </div>
+                    <div class="channel-body">
+                        <p class="channel-description">Intégrez notre groupe WhatsApp dédié aux montantes pour échanger et progresser ensemble.</p>
+                        <a href="https://chat.whatsapp.com/YOUR_MONTANTE_LINK" target="_blank" rel="noopener noreferrer" class="btn-join">
+                            Rejoindre maintenant
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1rem; height: 1rem;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="steps-section">
+        <div class="container">
+            <div class="steps-header">
+                <div class="steps-divider">
+                    <div class="steps-divider-line"></div>
+                    <div class="steps-divider-dot"></div>
+                    <div class="steps-divider-line"></div>
+                </div>
+                <h3 class="section-title">Comment rejoindre nos canaux</h3>
+                <p class="section-subtitle">C'est simple et rapide pour profiter de tous nos contenus !</p>
+            </div>
+
+            <div class="steps-list">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Étape 1 : Choisissez votre option</h4>
+                        <p>Sélectionnez le canal qui vous convient : Chaîne WhatsApp, Canal Telegram, ou Groupe WhatsApp pour les montantes.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Étape 2 : Accédez aux liens</h4>
+                        <p>Cliquez sur les trois points en haut à droite de votre écran pour accéder aux options.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Étape 3 : Ouvrez dans le navigateur</h4>
+                        <p>Sélectionnez "Ouvrir dans le navigateur" pour accéder au lien depuis votre application.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Étape 4 : Rejoignez-nous !</h4>
+                        <p>Vous êtes maintenant prêt à rejoindre l'un de nos canaux Royal PCS. Bienvenue dans la communauté !</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <div class="cta-box-icon"></div>
+                <p>C'est simple et rapide pour profiter de tous nos contenus !</p>
+                <p class="cta-box-subtitle">Bienvenue dans la communauté Royal PCS.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo-dot"></div>
+            <span class="footer-text">ROYAL PCS</span>
+            <div class="logo-dot"></div>
+        </div>
+        <p class="footer-copyright">© <span id="year"></span> Royal PCS · Tous droits réservés</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
