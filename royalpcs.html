@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Royal PCS — Communauté</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #D4AF37;
+      --gold-dark: #b8962e;
+      --navy: #1a2b4a;
+      --navy-light: #2c3e6b;
+      --text-dark: #1e2d4a;
+      --text-gray: #6b7a99;
+      --bg-light: #f4f6fa;
+      --white: #ffffff;
+      --whatsapp-green: #25D366;
+      --telegram-blue: #229ED9;
+      --wa-dark: #128C4A;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: var(--white);
+      text-align: center;
+      padding: 20px 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--navy);
+      text-transform: uppercase;
+    }
+    .logo-dot {
+      width: 14px; height: 14px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center;
+      padding: 64px 20px 48px;
+      background: var(--white);
+      border-bottom: 1px solid #e8ecf3;
+    }
+    .hero h1 {
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+    .hero p {
+      font-size: 1rem;
+      color: var(--text-gray);
+      max-width: 520px;
+      margin: 0 auto 14px;
+      line-height: 1.6;
+    }
+    .hero-p2 {
+      font-size: 0.95rem;
+      color: var(--text-gray);
+      margin-top: 8px !important;
+    }
+    .gold-dot-deco {
+      width: 10px; height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin: 12px auto 0;
+    }
+
+    /* ===== SECTION SEPARATOR ===== */
+    .separator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 48px auto 8px;
+    }
+    .separator-line {
+      width: 60px; height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    .separator-dot {
+      width: 12px; height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ===== CHANNELS SECTION ===== */
+    .channels {
+      padding: 0 20px 64px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+    }
+
+    .card-header {
+      padding: 32px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .card-green { background: linear-gradient(135deg, #22c55e, #16a34a); }
+    .card-blue  { background: linear-gradient(135deg, #3b9edf, #1a7fc4); }
+    .card-dark-green { background: linear-gradient(135deg, #16a34a, #14532d); }
+
+    .card-icon {
+      width: 56px; height: 56px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-icon svg { width: 32px; height: 32px; fill: white; }
+
+    .card-badge {
+      background: white;
+      border-radius: 20px;
+      padding: 3px 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+    }
+    .card-header h3 {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .card-body {
+      padding: 24px;
+    }
+    .card-body p {
+      color: var(--text-gray);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .btn-join {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-join:hover {
+      background: var(--gold-dark);
+      transform: scale(1.02);
+    }
+
+    /* ===== HOW TO JOIN ===== */
+    .how-section {
+      background: var(--white);
+      padding: 64px 20px;
+    }
+    .how-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .step-card {
+      background: var(--bg-light);
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      transition: box-shadow 0.2s;
+    }
+    .step-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .step-num {
+      min-width: 38px; height: 38px;
+      background: var(--navy);
+      color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .step-content h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .step-content p {
+      font-size: 0.88rem;
+      color: var(--text-gray);
+      line-height: 1.55;
+    }
+    .step-icon { font-size: 1rem; margin-right: 4px; }
+
+    /* ===== CTA BANNER ===== */
+    .cta-banner {
+      background: var(--navy);
+      text-align: center;
+      padding: 48px 20px;
+      margin: 0 20px 64px;
+      border-radius: 18px;
+      max-width: 1060px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-banner .gold-dot-deco { margin-bottom: 16px; }
+    .cta-banner h2 {
+      color: var(--white);
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .cta-banner p {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy);
+      text-align: center;
+      padding: 32px 16px;
+    }
+    footer .logo { margin-bottom: 10px; color: white; }
+    footer p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.82rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .hero { padding: 48px 16px 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <span class="logo-dot"></span>
+      ROYAL PCS
+      <span class="logo-dot"></span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Rejoignez nos canaux Royal PCS&nbsp;!</h1>
+    <p>Cliquez sur les différents liens pour rejoindre les différents canaux de Royal PCS.</p>
+    <p class="hero-p2">Pour bénéficier de nos avantages, suivez ces quelques étapes simples&nbsp;:</p>
+    <div class="gold-dot-deco"></div>
+  </section>
+
+  <!-- CHANNELS -->
+  <div class="channels">
+    <div class="separator">
+      <div class="separator-line"></div>
+      <div class="separator-dot"></div>
+      <div class="separator-line"></div>
+    </div>
+    <h2 class="section-title" style="margin-top:16px;">Étape 1 — Choisissez votre canal</h2>
+    <p class="section-subtitle">Sélectionnez parmi nos trois canaux officiels</p>
+
+    <div class="cards-grid">
+
+      <!-- WhatsApp Chain -->
+      <div class="card">
+        <div class="card-header card-green">
+          <div class="card-icon">
+            <!-- WhatsApp SVG -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L0 24l6.326-1.499A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm6.061 16.463c-.258.727-1.498 1.387-2.056 1.459-.513.065-1.16.093-1.873-.117-.431-.127-.984-.298-1.694-.585-2.964-1.235-4.901-4.138-5.049-4.332-.148-.194-1.207-1.568-1.207-2.99s.762-2.12 1.033-2.41c.271-.29.59-.362.786-.362.197 0 .394.002.567.01.181.009.424-.069.664.507.248.591.844 2.042.917 2.19.073.149.121.323.024.523-.097.199-.146.323-.291.498-.146.174-.307.389-.438.522-.146.148-.297.308-.128.604.169.296.749 1.237 1.607 2.003 1.104.983 2.035 1.286 2.331 1.435.296.148.468.124.64-.074.173-.198.737-.863.933-1.159.196-.296.393-.247.664-.148.27.099 1.712.808 2.006.955.294.148.49.222.563.345.073.123.073.71-.185 1.436z"/>
+            </svg>
+          </div>
+          <span class="card-badge">Officiel</span>
+          <h3>Chaîne WhatsApp</h3>
+        </div>
+        <div class="card-body">
+          <p>Rejoignez notre chaîne officielle WhatsApp pour les actualités et mises à jour exclusives de Royal PCS.</p>
+          <a href="https://chat.whatsapp.com/YOUR_WHATSAPP_LINK" target="_blank" class="btn-join">Rejoindre maintenant →</a>
+        </div>
+      </div>
+
+      <!-- Telegram -->
+      <div class="card">
+        <div class="card-header card-blue">
+          <div class="card-icon">
+            <!-- Telegram SVG -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.265 2.428L1.116 10.537c-1.392.558-1.384 1.333-.254 1.677l5.408 1.688 12.522-7.904c.59-.358 1.131-.166.688.228L8.416 16.07l-.36 5.558c.527 0 .76-.242 1.058-.53l2.542-2.468 5.285 3.901c.975.537 1.676.261 1.918-.904l3.462-16.302c.358-1.43-.546-2.079-1.056-1.897z"/>
+            </svg>
+          </div>
+          <span class="card-badge">Notifications</span>
+          <h3>Canal Telegram</h3>
+        </div>
+        <div class="card-body">
+          <p>Suivez notre canal Telegram pour recevoir toutes les informations importantes en temps réel.</p>
+          <a href="https://t.me/YOUR_TELEGRAM_LINK" target="_blank" class="btn-join">Rejoindre maintenant →</a>
+        </div>
+      </div>
+
+      <!-- WhatsApp Group -->
+      <div class="card">
+        <div class="card-header card-dark-green">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L0 24l6.326-1.499A11.933 11.933 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm6.061 16.463c-.258.727-1.498 1.387-2.056 1.459-.513.065-1.16.093-1.873-.117-.431-.127-.984-.298-1.694-.585-2.964-1.235-4.901-4.138-5.049-4.332-.148-.194-1.207-1.568-1.207-2.99s.762-2.12 1.033-2.41c.271-.29.59-.362.786-.362.197 0 .394.002.567.01.181.009.424-.069.664.507.248.591.844 2.042.917 2.19.073.149.121.323.024.523-.097.199-.146.323-.291.498-.146.174-.307.389-.438.522-.146.148-.297.308-.128.604.169.296.749 1.237 1.607 2.003 1.104.983 2.035 1.286 2.331 1.435.296.148.468.124.64-.074.173-.198.737-.863.933-1.159.196-.296.393-.247.664-.148.27.099 1.712.808 2.006.955.294.148.49.222.563.345.073.123.073.71-.185 1.436z"/>
+            </svg>
+          </div>
+          <span class="card-badge">Montante</span>
+          <h3>Groupe WhatsApp Montante</h3>
+        </div>
+        <div class="card-body">
+          <p>Intégrez notre groupe WhatsApp dédié aux montantes pour échanger et progresser ensemble.</p>
+          <a href="https://chat.whatsapp.com/YOUR_WHATSAPP_GROUP_LINK" target="_blank" class="btn-join">Rejoindre maintenant →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HOW TO JOIN -->
+  <section class="how-section">
+    <div class="how-inner">
+      <div class="separator">
+        <div class="separator-line"></div>
+        <div class="separator-dot"></div>
+        <div class="separator-line"></div>
+      </div>
+      <h2 class="section-title" style="margin-top:16px;">Comment rejoindre nos canaux</h2>
+      <p class="section-subtitle">C'est simple et rapide pour profiter de tous nos contenus !</p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>☑ Étape 1 : Choisissez votre option</h4>
+            <p>Sélectionnez le canal qui vous convient : Chaîne WhatsApp, Canal Telegram, ou Groupe WhatsApp pour les montantes.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>💬 Étape 2 : Accédez aux liens</h4>
+            <p>Cliquez sur les trois points en haut à droite de votre écran pour accéder aux options.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>→ Étape 3 : Ouvrez dans le navigateur</h4>
+            <p>Sélectionnez "Ouvrir dans le navigateur" pour accéder au lien depuis votre application.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>☑ Étape 4 : Rejoignez-nous !</h4>
+            <p>Vous êtes maintenant prêt à rejoindre l'un de nos canaux Royal PCS. Bienvenue dans la communauté !</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <div style="padding: 48px 20px 0;">
+    <div class="cta-banner">
+      <div class="gold-dot-deco"></div>
+      <h2>C'est simple et rapide pour profiter de tous nos contenus !</h2>
+      <p>Bienvenue dans la communauté Royal PCS.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo">
+      <span class="logo-dot"></span>
+      ROYAL PCS
+      <span class="logo-dot"></span>
+    </div>
+    <p style="margin-top:10px;">© 2026 Royal PCS · Tous droits réservés</p>
+  </footer>
+
+</body>
+</html>
